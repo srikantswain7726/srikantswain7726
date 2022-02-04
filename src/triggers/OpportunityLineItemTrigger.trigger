@@ -13,8 +13,7 @@ trigger OpportunityLineItemTrigger on OpportunityLineItem (before insert,before 
                OpportunityItemTriggerControl__mdt[] trigerControl = [SELECT Id, IsActive__c,DeveloperName FROM OpportunityItemTriggerControl__mdt
                      WHERE DeveloperName = 'Update_Project_Fields_From_OppItem' LIMIT 1];
                      
-                     system.debug('++++++++++++++++++++++++++++++'+trigerControl.size());
-                if(trigerControl.size()>0 && trigerControl[0].IsActive__c == true) {
+                     if(trigerControl.size()>0 && trigerControl[0].IsActive__c == true) {
                     
                      CLDLY_UpdateProjectFieldHandler.OnAfterUpdateNetsuiteSOLineId(Trigger.new,Trigger.oldMap);
                      
