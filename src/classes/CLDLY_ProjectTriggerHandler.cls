@@ -50,8 +50,8 @@ from Opportunity field(PS_Primary_Manager__c) value
                     prj.pse__Planned_Hours__c=parentOPLI.Quantity * parentOPLI.Product2.Project_Template__r.pse__Planned_Hours__c;
                     prj.pse__Include_In_Forecasting__c = parentOPLI.Product2.Project_Template__r.pse__Include_In_Forecasting__c ;
                     prj.pse__Recognition_Method__c = parentOPLI.Product2.Project_Template__r.pse__Recognition_Method__c ;
-                  //  prj.pse__Bookings__c = parentOPLI.f_ACV__c;
-                   // prj.pse__End_Date__c = parentOPLI.Opportunity.CloseDate.addYears(1); 
+                    prj.Sku_code__c = parentOPLI.ProductCode;
+                    prj.Number_of_Seats__c = parentOPLI.Quantity;
                     system.debug('------------------------------------>');
                 system.debug('===prj.OLI_ID__c===='+prj.pse__Planned_Hours__c);
             }
@@ -75,7 +75,7 @@ from Opportunity field(PS_Primary_Manager__c) value
     public static Map<Id, OpportunityLineItem> getOpportunityLineItem(List<Id>opliId){
         Map<Id,OpportunityLineItem> parentOPLIsMap=new Map<Id,OpportunityLineItem>();
         parentOPLIsMap = new Map<Id, OpportunityLineItem>([SELECT id,f_Subscription_Start_Date__c, Netsuite_Line_Item_Id__c,
-                                                           f_Subscription_End_Date__c, Quantity,f_ACV__c,
+                                                           f_Subscription_End_Date__c, Quantity,f_ACV__c,ProductCode,
                                                            Product2.Project_Template__r.pse__Include_In_Forecasting__c,
                                                            Product2.Project_Template__r.pse__Recognition_Method__c,
                                                            Opportunity.CloseDate,
